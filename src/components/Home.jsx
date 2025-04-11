@@ -613,7 +613,7 @@ export default function FarmhouseRental() {
             <img
               src={galleryImages[selectedIndex]}
               alt={`Farmhouse view ${selectedIndex + 1}`}
-              className="w-full max-h-[70vh] object-contain rounded-lg"
+              className="w-full max-h-[70vh] object-fit rounded-lg"
             />
 
             <button
