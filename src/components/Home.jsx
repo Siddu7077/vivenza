@@ -228,7 +228,7 @@ export default function FarmhouseRental() {
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center">
             <h1 className="text-2xl font-bold text-green-800">
-              Rustic Retreat Farmhouse
+              Vivenza Farmhouse
             </h1>
           </div>
 
@@ -377,7 +377,7 @@ export default function FarmhouseRental() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">
-              Welcome to Rustic Retreat Farmhouse
+              Welcome to Vivenza Farmhouse
             </h2>
             <div className="w-24 h-1 bg-green-700 mx-auto"></div>
           </div>
@@ -415,7 +415,8 @@ export default function FarmhouseRental() {
 
               <div className="flex items-center text-green-800">
                 <MapPin size={20} className="mr-2" />
-                <span>Located in Beautiful Countryside, USA</span>
+                <span>Located at JBIT College, MURTHUZAGUDA
+                MOINABAD, R.R Dist - 501504</span>
               </div>
             </div>
           </div>
@@ -1095,7 +1096,7 @@ export default function FarmhouseRental() {
                   <div>
                     <div className="text-sm text-gray-500">Email</div>
                     <div className="font-medium">
-                      info@rusticretreatfarmhouse.com
+                      info@vivenza.co.in
                     </div>
                   </div>
                 </div>
@@ -1254,7 +1255,7 @@ export default function FarmhouseRental() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-xl font-bold mb-4">
-                Rustic Retreat Farmhouse
+                Vivenza Farmhouse
               </h3>
               <p className="mb-4 text-gray-300">
                 A charming countryside getaway for your perfect vacation.
@@ -1329,7 +1330,7 @@ export default function FarmhouseRental() {
 
           <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
             <p>
-              &copy; {new Date().getFullYear()} Rustic Retreat Farmhouse. All
+              &copy; {new Date().getFullYear()} Vivenza Farmhouse. All
               rights reserved.
             </p>
           </div>
