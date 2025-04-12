@@ -19,6 +19,25 @@ import {
   Twitter,
 } from "lucide-react";
 import FarmhouseBooking from "./MainSection";
+import FarmhouseAmenities from "./Amenites"
+import img1 from "../assets/1.jpeg";
+import img2 from "../assets/2.jpeg";
+import img3 from "../assets/3.jpeg";
+import img4 from "../assets/4.jpeg";
+import img5 from "../assets/5.jpeg";
+import img6 from "../assets/6.jpeg";
+import img7 from "../assets/7.jpeg";
+import img8 from "../assets/8.jpeg";
+import img9 from "../assets/9.jpeg";
+import img10 from "../assets/10.jpeg";
+import img11 from "../assets/11.jpeg";
+import img12 from "../assets/12.jpeg";
+import img13 from "../assets/13.jpeg";
+import img14 from "../assets/14.jpeg";
+import img15 from "../assets/15.jpeg";
+import img16 from "../assets/16.jpeg";
+import img17 from "../assets/17.jpeg";
+import EnhancedFAQSection from "./FAQ";
 
 export default function FarmhouseRental() {
   const [checkInDate, setCheckInDate] = useState("");
@@ -42,12 +61,7 @@ export default function FarmhouseRental() {
       prev === galleryImages.length - 1 ? 0 : prev + 1
     );
 
-  //   const farmhouseImages = [
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800"
-  //   ];
+
 
   const farmhouseImages = [
     "https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
@@ -55,15 +69,9 @@ export default function FarmhouseRental() {
     "https://images.unsplash.com/photo-1541086095944-f4b5412d3666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
   ];
 
-  const galleryImages = [
-    "https://assets.architecturaldigest.in/photos/6443d4f9dfce01034953036d/master/w_1600,c_limit/DJI_0452.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d6cfdfce010349530375/master/w_1600,c_limit/IMG_8260-Edit.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d7245e459f60aa950913/master/w_1600,c_limit/IMG_8320-Edit.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d7505e459f60aa950915/master/w_1600,c_limit/IMG_8360-Edit.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d8e5f192b54c0650bdf6/master/w_1600,c_limit/IMG_8731-Edit.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d6745e459f60aa950911/master/w_1600,c_limit/IMG_8327-Edit.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d62ddfce010349530371/master/w_1600,c_limit/IMG_8549.jpg",
-    "https://assets.architecturaldigest.in/photos/6443d5e65e459f60aa95090f/master/w_1600,c_limit/IMG_8336-Edit.jpg",
+  const galleryImages = [ img1,  img3,  img5, img6, img7, img8, img9,
+    img10, img11, img12, img13, img14, img15, img16, img17, img1
+    
   ];
 
 
@@ -113,360 +121,18 @@ export default function FarmhouseRental() {
 
   return (
     <div className="font-sans text-gray-800 bg-gray-50 min-h-screen">
-      {/* Header */}
-      <header className="bg-white shadow-md sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-green-800">
-              Vivenza Farmhouse
-            </h1>
-          </div>
+     
 
-          <div className="hidden md:flex space-x-6">
-            <a href="#home" className="hover:text-green-700 font-medium">
-              Home
-            </a>
-            <a href="#about" className="hover:text-green-700 font-medium">
-              About
-            </a>
-            <a href="#amenities" className="hover:text-green-700 font-medium">
-              Amenities
-            </a>
-            <a href="#gallery" className="hover:text-green-700 font-medium">
-              Gallery
-            </a>
-            <a href="#contact" className="hover:text-green-700 font-medium">
-              Contact
-            </a>
-          </div>
+     
+      <FarmhouseBooking />
 
-          <button
-            onClick={() => setIsBookingOpen(true)}
-            className="bg-green-700 hover:bg-green-800 text-white py-2 px-4 rounded-md transition-all"
-          >
-            Book Now
-          </button>
+    
+      <FarmhouseAmenities />
 
-          <button
-            className="md:hidden text-gray-700"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-        </div>
 
-        {isMenuOpen && (
-          <div className="md:hidden bg-white py-3 px-4 shadow-inner">
-            <div className="flex flex-col space-y-3">
-              <a
-                href="#home"
-                className="hover:text-green-700"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Home
-              </a>
-              <a
-                href="#about"
-                className="hover:text-green-700"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                About
-              </a>
-              <a
-                href="#amenities"
-                className="hover:text-green-700"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Amenities
-              </a>
-              <a
-                href="#gallery"
-                className="hover:text-green-700"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Gallery
-              </a>
-              <a
-                href="#contact"
-                className="hover:text-green-700"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        )}
-      </header>
 
-      {/* Hero Section */}
-      {/* <section id="home" className="relative h-screen">
-        <div className="absolute inset-0 bg-black/30 z-10 flex items-center justify-center text-center">
-          <div className="text-white max-w-3xl px-4">
-            <h1 className="text-5xl md:text-6xl font-bold mb-4">
-              Experience Rustic Luxury
-            </h1>
-            <p className="text-xl md:text-2xl mb-8">
-              A peaceful getaway in the heart of the countryside
-            </p>
-            <button
-              onClick={() => setIsBookingOpen(true)}
-              className="bg-green-700 hover:bg-green-800 text-white text-lg py-3 px-8 rounded-md transition-all"
-            >
-              Book Your Stay
-            </button>
-          </div>
-        </div>
-
-        <div className="absolute inset-0 overflow-hidden">
-          {farmhouseImages.map((img, index) => (
-            <div
-              key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? "opacity-100" : "opacity-0"
-              }`}
-            >
-              <img
-                src={img}
-                alt={`Farmhouse view ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={handlePrevSlide}
-          className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 rounded-full"
-        >
-          <ChevronLeft size={24} className="text-white" />
-        </button>
-
-        <button
-          onClick={handleNextSlide}
-          className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 rounded-full"
-        >
-          <ChevronRight size={24} className="text-white" />
-        </button>
-      </section>
-
-    Booking Modal 
-      {isBookingOpen && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold">Book Your Stay</h3>
-                <button
-                  onClick={() => setIsBookingOpen(false)}
-                  className="text-gray-500 hover:text-gray-800"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {bookingMessage ? (
-                <div className="text-center py-8">
-                  <div className="text-green-700 mb-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-16 w-16 mx-auto"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-xl font-semibold text-gray-800">
-                    {bookingMessage}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleBookNow}>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="checkIn"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Check-in Date
-                    </label>
-                    <input
-                      type="date"
-                      id="checkIn"
-                      value={checkInDate}
-                      onChange={(e) => setCheckInDate(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-6">
-                    <label
-                      htmlFor="checkOut"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Check-out Date
-                    </label>
-                    <input
-                      type="date"
-                      id="checkOut"
-                      value={checkOutDate}
-                      onChange={(e) => setCheckOutDate(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-8">
-                    <label
-                      htmlFor="guests"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Number of Guests
-                    </label>
-                    <select
-                      id="guests"
-                      value={guests}
-                      onChange={(e) => setGuests(Number(e.target.value))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    >
-                      {[...Array(8)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1} Guest{i !== 0 ? "s" : ""}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="mb-6 p-4 bg-gray-50 rounded-md">
-                    <h4 className="font-semibold mb-2">Price Summary</h4>
-                    <div className="flex justify-between py-1 text-gray-700">
-                      <span>Base Price</span>
-                      <span>$250/night</span>
-                    </div>
-                    <div className="flex justify-between py-1 text-gray-700">
-                      <span>Cleaning Fee</span>
-                      <span>$150</span>
-                    </div>
-                    <div className="flex justify-between py-1 font-semibold border-t border-gray-200 mt-2 pt-2">
-                      <span>Total</span>
-                      <span>Calculated at checkout</span>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-md transition-all flex items-center justify-center"
-                  >
-                    <Calendar size={20} className="mr-2" />
-                    Book Now
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )} */}
-<FarmhouseBooking />
-
-      {/* About Section */}
-      <section id="about" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Welcome to Vivenza Farmhouse
-            </h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-              <img
-                src="https://www.indiaartndesign.com/IAnD_images/content2021/March2021/ClusterOne/sit-out-SanvinaFarmhouse-ClusterOneCreativeSolutions-indiaartndesign.jpg"
-                alt="Farmhouse exterior"
-                className="rounded-lg shadow-lg w-auto h-full"
-              />
-            </div>
-
-            <div>
-              <h3 className="text-2xl font-semibold mb-4">
-                A Perfect Country Escape
-              </h3>
-              <p className="text-gray-700 mb-4">
-                Nestled in the picturesque countryside, our charming farmhouse
-                offers the perfect blend of rustic charm and modern comfort.
-                Built in the 1900s and lovingly restored, this historic property
-                sits on 5 acres of private land with stunning views of rolling
-                hills and lush forests.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Nestled in the picturesque countryside, our charming farmhouse
-                offers the perfect blend of rustic charm and modern comfort.
-                Built in the 1900s and lovingly restored, this historic property
-                sits on 5 acres of private land with stunning views of rolling
-                hills and lush forests.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Nestled in the picturesque countryside, our charming farmhouse
-                offers the perfect blend of rustic charm and modern comfort.
-                Built in the 1900s and lovingly restored, this historic property
-                sits on 5 acres of private land with stunning views of rolling
-                hills and lush forests.
-              </p>
-              <p className="text-gray-700 mb-4">
-                Whether you're seeking a romantic getaway, a family vacation, or
-                a peaceful retreat to reconnect with nature, our farmhouse
-                provides an idyllic setting for your next adventure.
-              </p>
-              <p className="text-gray-700 mb-6">
-                Just a short 15-minute drive from town, you'll enjoy the
-                tranquility of country living while having easy access to local
-                attractions, shops, and restaurants.
-              </p>
-
-              <div className="flex items-center text-green-800">
-                <MapPin size={20} className="mr-2" />
-                <span>Located at JBIT College, MURTHUZAGUDA
-                MOINABAD, R.R Dist - 501504</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-16 bg-gray-50">
+ {/* Features Section */}
+       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Farmhouse Features</h2>
@@ -480,7 +146,7 @@ export default function FarmhouseRental() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md">
               <img
-                src="https://media.designcafe.com/wp-content/uploads/2020/03/21012613/luxury-living-room-designs.jpg"
+                src={img12}
                 alt="Living room"
                 className="w-full h-52 object-cover rounded-t-md mb-4"
               />
@@ -531,71 +197,61 @@ export default function FarmhouseRental() {
             </div>
           </div>
         </div>
-      </section>
+      </section> 
 
-      {/* Amenities Section */}
-      <section id="amenities" className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Amenities</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Our farmhouse is equipped with everything you need for a
-              comfortable and memorable stay.
-            </p>
-          </div>
+      {/* About Vivenza Section */}
+<section className="py-16 bg-gray-50">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-12">
+      <h2 className="text-3xl font-bold mb-4">About Vivenza</h2>
+      <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
+      <p className="text-gray-700 max-w-2xl mx-auto">
+        Experience luxury and elegance at Vivenza, the most premium farmhouse in Moinabad, Telangana, India. With expansive spaces and world-class amenities, we create unforgettable memories.
+      </p>
+    </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-            {amenities.map((item, index) => (
-              <div
-                key={index}
-                className="flex items-center p-4 bg-gray-50 rounded-lg shadow-sm"
-              >
-                <div className="text-green-700 mr-3">{item.icon}</div>
-                <span>{item.name}</span>
-              </div>
-            ))}
-          </div>
+    <div className="grid md:grid-cols-3 gap-8">
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h3 className="text-xl font-semibold mb-2">Luxurious Accommodations</h3>
+        <p className="text-gray-700">
+          Vivenza boasts 8 opulent air-conditioned bedrooms with attached washrooms, 4 spacious halls, and multiple lounges. Our premium suites feature king-size beds with luxury linens, modern bathrooms, and breathtaking views of the surrounding landscape.
+        </p>
+      </div>
 
-          <div className="mt-12 bg-gray-50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-4">Additional Amenities</h3>
-            <ul className="grid md:grid-cols-2 gap-3">
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Fully stocked kitchen with modern appliances
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Washer and dryer
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Heating and air conditioning
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Board games and books
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Outdoor games
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Walking trails on property
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Welcome basket with local treats
-              </li>
-              <li className="flex items-center">
-                <div className="w-2 h-2 rounded-full bg-green-700 mr-2"></div>{" "}
-                Highchair and pack-n-play available
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h3 className="text-xl font-semibold mb-2">Grand Event Spaces</h3>
+        <p className="text-gray-700">
+          Host magnificent events for up to 500 guests across our versatile venues. Our elegant banquet hall, sprawling outdoor lawn, and poolside area are perfect for weddings, corporate retreats, birthdays, bachelor/bachelorette parties, and family celebrations.
+        </p>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-6">
+        <h3 className="text-xl font-semibold mb-2">Premium Amenities</h3>
+        <p className="text-gray-700">
+          Indulge in our 50x70 ft infinity swimming pool, professionally landscaped 100x150 ft lawn, outdoor BBQ area, fire pit lounge, fully-equipped gourmet kitchen, and state-of-the-art sound system. We offer complimentary high-speed WiFi throughout the property.
+        </p>
+      </div>
+    </div>
+
+    <div className="mt-12 bg-white rounded-lg shadow-md p-6">
+      <h3 className="text-xl font-semibold mb-4">Booking Information</h3>
+      <p className="text-gray-700 mb-4">
+        Vivenza is available for daily rentals and special events throughout the year. Our dedicated event planning team can assist with catering, decoration, entertainment, and all logistics to ensure a seamless experience.
+      </p>
+      
+      <h4 className="text-lg font-medium mb-2">Home Rules and Policies:</h4>
+      <ul className="text-gray-700 space-y-2">
+        <li>• 50% advance payment required for booking confirmation, with remaining balance and Rs.10,000 security deposit (refundable) due at check-in.</li>
+        <li>• Every guest must carry a government-approved ID proof.</li>
+        <li>• Professional event management and catering services available upon request.</li>
+        <li>• CCTV cameras are present in exterior areas for your safety.</li>
+        <li>• Special rates apply for weekends and public holidays.</li>
+        <li>• Any damage to property will result in deduction from the security deposit.</li>
+        <li>• Illegal activities, prohibited substances, and inappropriate behavior are strictly forbidden.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
       {/* Gallery Section */}
       <section id="gallery" className="py-16 bg-gray-50">
@@ -714,7 +370,7 @@ export default function FarmhouseRental() {
                 a comfortable stay. We especially loved sitting on the porch in
                 the evenings, watching the sunset."
               </p>
-              <div className="font-medium">Sarah and Family</div>
+              <div className="font-medium">Priya & Rahul Sharma</div>
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
@@ -737,7 +393,7 @@ export default function FarmhouseRental() {
                 maintaining its rustic charm. We loved exploring the property
                 and relaxing by the fire pit in the evenings."
               </p>
-              <div className="font-medium">John and Rebecca</div>
+              <div className="font-medium">Aditya Kapoor </div>
             </div>
 
             <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
@@ -761,625 +417,79 @@ export default function FarmhouseRental() {
                 loved running around outside and we all enjoyed the peaceful
                 surroundings."
               </p>
-              <div className="font-medium">The Martinez Family</div>
+              <div className="font-medium">Vikram Malhotra </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Rates & Availability */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Rates & Availability</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Our Rates</h3>
-              <div className="bg-white p-6 rounded-lg shadow-md mb-6">
-                <div className="flex justify-between items-center pb-3 mb-3 border-b border-gray-200">
-                  <div className="font-medium">Weekday (Sun-Thu)</div>
-                  <div className="font-semibold text-green-800">$250/night</div>
-                </div>
-                <div className="flex justify-between items-center pb-3 mb-3 border-b border-gray-200">
-                  <div className="font-medium">Weekend (Fri-Sat)</div>
-                  <div className="font-semibold text-green-800">$325/night</div>
-                </div>
-                <div className="flex justify-between items-center pb-3 mb-3 border-b border-gray-200">
-                  <div className="font-medium">Weekly Rate</div>
-                  <div className="font-semibold text-green-800">
-                    $1,600/week
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <div className="font-medium">Cleaning Fee</div>
-                  <div className="font-semibold text-green-800">$150</div>
-                </div>
-
-                <div className="mt-6 text-sm text-gray-600">
-                  <p>* Minimum stay: 2 nights (3 nights for holidays)</p>
-                  <p>* Additional guest fee: $25/night for each guest over 6</p>
-                </div>
-              </div>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <h4 className="font-semibold mb-3">Terms & Conditions</h4>
-                <ul className="space-y-2 text-gray-700">
-                  <li className="flex items-start">
-                    <div className="text-green-700 mr-2 mt-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span>50% deposit required to confirm reservation</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="text-green-700 mr-2 mt-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span>
-                      Full refund if cancelled 30+ days before check-in
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="text-green-700 mr-2 mt-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span>
-                      50% refund if cancelled 14-29 days before check-in
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="text-green-700 mr-2 mt-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span>
-                      No refund if cancelled less than 14 days before check-in
-                    </span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="text-green-700 mr-2 mt-1">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span>Check-in: 4:00 PM, Check-out: 11:00 AM</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Check Availability</h3>
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="p-2 bg-green-100 text-green-800 rounded-full">
-                    <Clock size={24} />
-                  </div>
-                  <div className="flex-1 ml-4">
-                    <h4 className="font-semibold">Ready to book your stay?</h4>
-                    <p className="text-gray-600">
-                      Check availability and reserve your dates now.
-                    </p>
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => setIsBookingOpen(true)}
-                  className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-md transition-all flex items-center justify-center"
-                >
-                  <Calendar size={20} className="mr-2" />
-                  Check Availability & Book
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Local Attractions */}
-      {/* <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Local Attractions</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Explore the beautiful surroundings and discover local gems during
-              your stay.
-            </p>
-          </div>
+     <section className="wp-block-group attractions-section py-8">
+  <div className="container mx-auto px-4">
+    <div className="wp-block-heading text-center mb-6">
+      <h2 className="text-2xl font-bold"> Local Attractions </h2>
+      <div className="w-16 h-1 bg-green-600 mx-auto my-3"></div>
+      <p className="text-sm text-gray-600">Discover natural beauty and cultural gems around your stay</p>
+    </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-              <img
-                src="/api/placeholder/400/300"
-                alt="Hiking trails"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Hiking & Nature</h3>
-                <p className="text-gray-700 mb-4">
-                  Explore miles of scenic hiking trails in the nearby national
-                  forest, just a 10-minute drive from the farmhouse.
-                </p>
-                <div className="text-sm text-gray-500">Distance: 5 miles</div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-              <img
-                src="/api/placeholder/400/300"
-                alt="Local winery"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">
-                  Wineries & Vineyards
-                </h3>
-                <p className="text-gray-700 mb-4">
-                  Visit local wineries and vineyards for tastings and tours. The
-                  region is known for its excellent wines.
-                </p>
-                <div className="text-sm text-gray-500">Distance: 8 miles</div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md">
-              <img
-                src="/api/placeholder/400/300"
-                alt="Farmers market"
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">Farmers Markets</h3>
-                <p className="text-gray-700 mb-4">
-                  Shop for fresh, local produce and artisanal goods at the
-                  weekly farmers market in town.
-                </p>
-                <div className="text-sm text-gray-500">Distance: 6 miles</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 grid md:grid-cols-2 gap-8">
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md flex">
-              <img
-                src="/api/placeholder/300/200"
-                alt="Local restaurant"
-                className="w-1/3 object-cover"
-              />
-              <div className="p-6 flex-1">
-                <h3 className="text-lg font-semibold mb-2">Local Dining</h3>
-                <p className="text-gray-700 mb-2">
-                  Discover charming restaurants serving farm-to-table cuisine
-                  using locally sourced ingredients.
-                </p>
-                <div className="text-sm text-gray-500">
-                  Distance: 4-10 miles
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-gray-50 rounded-lg overflow-hidden shadow-md flex">
-              <img
-                src="/api/placeholder/300/200"
-                alt="Antique shop"
-                className="w-1/3 object-cover"
-              />
-              <div className="p-6 flex-1">
-                <h3 className="text-lg font-semibold mb-2">Antique Shopping</h3>
-                <p className="text-gray-700 mb-2">
-                  Browse unique treasures at the many antique shops and
-                  boutiques in our historic downtown.
-                </p>
-                <div className="text-sm text-gray-500">Distance: 7 miles</div>
-              </div>
-            </div>
-          </div>
+    <div className="wp-block-columns mb-4">
+      <div className="wp-block-column attractions-grid grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Osman Sagar Lake</h3>
+          <p className="text-xs text-gray-700">A serene reservoir with picturesque sunset views and boating opportunities.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 8 km</div>
         </div>
-      </section> */}
-
-      {/* Contact Section */}
-      <section id="contact" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Contact Us</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Have questions about our farmhouse? We're here to help!
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-semibold mb-6">Get in Touch</h3>
-
-              <form className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block text-gray-700 mb-2">
-                    Your Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter your name"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter your email"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="subject" className="block text-gray-700 mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter subject"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-gray-700 mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows="4"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    placeholder="Enter your message"
-                  ></textarea>
-                </div>
-
-                <button
-                  type="submit"
-                  className="bg-green-700 hover:bg-green-800 text-white py-2 px-6 rounded-md transition-all"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold mb-6">
-                Contact Information
-              </h3>
-
-              <div className="bg-white p-6 rounded-lg shadow-md">
-                <div className="flex items-center mb-6">
-                  <div className="bg-green-100 p-3 rounded-full text-green-700 mr-4">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">Phone</div>
-                    <div className="font-medium">(555) 123-4567</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center mb-6">
-                  <div className="bg-green-100 p-3 rounded-full text-green-700 mr-4">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">Email</div>
-                    <div className="font-medium">
-                      info@vivenza.co.in
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex items-center mb-6">
-                  <div className="bg-green-100 p-3 rounded-full text-green-700 mr-4">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">Address</div>
-                    <div className="font-medium">
-                      123 Country Road, Rural County, USA
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8">
-                  <h4 className="font-semibold mb-3">Follow Us</h4>
-                  <div className="flex space-x-4">
-                    <a
-                      href="#"
-                      className="bg-gray-100 p-3 rounded-full text-gray-600 hover:text-green-700 hover:bg-green-100 transition-all"
-                    >
-                      <Facebook size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-gray-100 p-3 rounded-full text-gray-600 hover:text-green-700 hover:bg-green-100 transition-all"
-                    >
-                      <Instagram size={20} />
-                    </a>
-                    <a
-                      href="#"
-                      className="bg-gray-100 p-3 rounded-full text-gray-600 hover:text-green-700 hover:bg-green-100 transition-all"
-                    >
-                      <Twitter size={20} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-6 bg-white p-4 rounded-lg shadow-md">
-                <h4 className="font-semibold mb-2">Business Hours</h4>
-                <div className="text-gray-700">
-                  <div className="flex justify-between py-1">
-                    <span>Monday - Friday:</span>
-                    <span>9:00 AM - 5:00 PM</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span>Saturday:</span>
-                    <span>10:00 AM - 3:00 PM</span>
-                  </div>
-                  <div className="flex justify-between py-1">
-                    <span>Sunday:</span>
-                    <span>Closed</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Himayat Sagar</h3>
+          <p className="text-xs text-gray-700">Beautiful lake with walking paths and peaceful surroundings.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 12 km</div>
         </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">
-              Frequently Asked Questions
-            </h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-          </div>
-
-          <div className="max-w-3xl mx-auto">
-            <div className="mb-6 bg-gray-50 rounded-lg shadow-sm">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold">
-                  What is the check-in/check-out time?
-                </h3>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700">
-                  Check-in time is 4:00 PM and check-out time is 11:00 AM. Early
-                  check-in or late check-out may be available upon request,
-                  depending on our schedule.
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-6 bg-gray-50 rounded-lg shadow-sm">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold">
-                  Is the farmhouse pet-friendly?
-                </h3>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700">
-                  Yes, we allow well-behaved dogs with a maximum of 2 dogs per
-                  booking. There is an additional pet fee of $50 per stay.
-                  Please let us know in advance if you'll be bringing your furry
-                  friend(s).
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-6 bg-gray-50 rounded-lg shadow-sm">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold">
-                  Is there WiFi at the farmhouse?
-                </h3>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700">
-                  Yes, complimentary high-speed WiFi is available throughout the
-                  farmhouse.
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-6 bg-gray-50 rounded-lg shadow-sm">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold">
-                  How far is the nearest town?
-                </h3>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700">
-                  The nearest town with shops, restaurants, and groceries is
-                  approximately 15 minutes (7 miles) from the farmhouse.
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-6 bg-gray-50 rounded-lg shadow-sm">
-              <div className="p-4 border-b border-gray-200">
-                <h3 className="text-lg font-semibold">
-                  Is the property suitable for children?
-                </h3>
-              </div>
-              <div className="p-4">
-                <p className="text-gray-700">
-                  Yes, our farmhouse is family-friendly. We provide a highchair
-                  and pack-n-play upon request. The property has plenty of space
-                  for children to play, but please note that there is a pond on
-                  the property so children should be supervised at all times.
-                </p>
-              </div>
-            </div>
-          </div>
+        
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Chilkur Balaji Temple</h3>
+          <p className="text-xs text-gray-700">Popular "Visa Balaji" temple known for its spiritual significance.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 15 km</div>
         </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">
-                Vivenza Farmhouse
-              </h3>
-              <p className="mb-4 text-gray-300">
-                A charming countryside getaway for your perfect vacation.
-              </p>
-              <div className="flex space-x-4">
-                <a href="#" className="text-gray-300 hover:text-white">
-                  <Facebook size={20} />
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  <Instagram size={20} />
-                </a>
-                <a href="#" className="text-gray-300 hover:text-white">
-                  <Twitter size={20} />
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-              <ul className="space-y-2">
-                <li>
-                  <a href="#home" className="text-gray-300 hover:text-white">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="#about" className="text-gray-300 hover:text-white">
-                    About
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#amenities"
-                    className="text-gray-300 hover:text-white"
-                  >
-                    Amenities
-                  </a>
-                </li>
-                <li>
-                  <a href="#gallery" className="text-gray-300 hover:text-white">
-                    Gallery
-                  </a>
-                </li>
-                <li>
-                  <a href="#contact" className="text-gray-300 hover:text-white">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-              <p className="mb-4 text-gray-300">
-                Subscribe to our newsletter for updates and special offers.
-              </p>
-              <form className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="px-4 py-2 w-full rounded-l-md focus:outline-none text-gray-800"
-                />
-                <button
-                  type="submit"
-                  className="bg-green-700 hover:bg-green-800 px-4 py-2 rounded-r-md transition-all"
-                >
-                  Subscribe
-                </button>
-              </form>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm">
-            <p>
-              &copy; {new Date().getFullYear()} Vivenza Farmhouse. All
-              rights reserved.
-            </p>
-          </div>
+        
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Mrugavani National Park</h3>
+          <p className="text-xs text-gray-700">Wildlife sanctuary with hiking trails and native flora and fauna.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 20 km</div>
         </div>
-      </footer>
+        
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Golconda Fort</h3>
+          <p className="text-xs text-gray-700">Historic fort with stunning architecture and light & sound shows.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 25 km</div>
+        </div>
+        
+        <div className="attraction-card p-3 border border-gray-100 rounded shadow-sm">
+          <h3 className="text-md font-semibold text-green-700">Shilparamam</h3>
+          <p className="text-xs text-gray-700">Arts and crafts village showcasing traditional handicrafts and culture.</p>
+          <div className="text-xs text-gray-500 mt-1">Distance: 28 km</div>
+        </div>
+      </div>
+    </div>
+
+    <div className="wp-block-buttons flex justify-center mt-4">
+      <div className="wp-block-button">
+        <a href="https://www.google.com/search?q=local+attractions+near+moinabad&oq=local+attractions+near+moinabad" target="_blank" className="wp-block-button__link bg-green-600 hover:bg-green-700 text-white text-sm px-4 py-2 rounded">View All Attractions</a>
+      </div>
+    </div>
+  </div>
+</section>
+  
+        {/* FAQ Section */}
+    <EnhancedFAQSection />
+
+      
+      
 
       
     </div>
   );
 }
+

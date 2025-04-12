@@ -1,28 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Calendar, Plus, Minus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Plus, Minus, Calendar } from "lucide-react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+// Import images from assets folder
+import img1 from "../assets/1.jpeg";
+import img2 from "../assets/2.jpeg";
+import img3 from "../assets/3.jpeg";
+import img4 from "../assets/4.jpeg";
+import img5 from "../assets/5.jpeg";
+import img6 from "../assets/6.jpeg";
+import img7 from "../assets/7.jpeg";
+import img8 from "../assets/8.jpeg";
+import img9 from "../assets/9.jpeg";
+import img10 from "../assets/10.jpeg";
+import img11 from "../assets/11.jpeg";
+import img12 from "../assets/12.jpeg";
+import img13 from "../assets/13.jpeg";
+import img14 from "../assets/14.jpeg";
+import img15 from "../assets/15.jpeg";
+import img16 from "../assets/16.jpeg";
+import img17 from "../assets/17.jpeg";
 
 const FarmhouseBooking = () => {
   // State for image carousel
   const [currentSlide, setCurrentSlide] = useState(0);
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
+  const [eventDate, setEventDate] = useState(null);
   const [guests, setGuests] = useState(10);
   const [occasion, setOccasion] = useState("");
   const [djRequired, setDjRequired] = useState("no");
   const [drinkingAllowed, setDrinkingAllowed] = useState("no");
   const [bookingMessage, setBookingMessage] = useState("");
-  const [activeTab, setActiveTab] = useState("with-stay");
+  const [isWithStay, setIsWithStay] = useState(true);
 
-  // Sample farmhouse images (replace with your actual images)
+  // Farmhouse images from assets folder
   const farmhouseImages = [
-    "https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1541086095944-f4b5412d3666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1541086095944-f4b5412d3666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1541086095944-f4b5412d3666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
-    "https://images.unsplash.com/photo-1541086095944-f4b5412d3666?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80",
+    img1, img2, img3, img4, img5, img6, img7, img8, img9,
+    img10, img11, img12, img13, img14, img15, img16, img17
   ];
 
   // List of occasions
@@ -61,13 +77,13 @@ const FarmhouseBooking = () => {
     e.preventDefault();
 
     // Simple validation
-    if (!checkInDate || !checkOutDate) {
+    if (isWithStay && (!checkInDate || !checkOutDate)) {
       alert("Please select check-in and check-out dates");
       return;
     }
-
-    if (adults + children === 0) {
-      alert("Please add at least one guest");
+    
+    if (!isWithStay && !eventDate) {
+      alert("Please select an event date");
       return;
     }
 
@@ -76,17 +92,15 @@ const FarmhouseBooking = () => {
       return;
     }
 
-    // Calculate nights
-    const nights = Math.ceil(
-      (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)
-    );
+    // Calculate nights for with-stay bookings
+    const nights = isWithStay && checkInDate && checkOutDate
+      ? Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
+      : 0;
 
     setBookingMessage(
-      `Thank you for your booking request! Your ${nights}-night stay for ${
-        adults + children
-      } guest${
-        adults + children > 1 ? "s" : ""
-      } has been received. We will contact you soon.`
+      isWithStay
+        ? `Thank you for your booking request! Your ${nights}-night stay for ${guests} guest${guests > 1 ? "s" : ""} has been received. We will contact you soon.`
+        : `Thank you for your booking request for ${guests} guest${guests > 1 ? "s" : ""}! We will contact you soon to confirm your event.`
     );
 
     // Reset form after 5 seconds
@@ -94,22 +108,25 @@ const FarmhouseBooking = () => {
       setBookingMessage("");
       setCheckInDate(null);
       setCheckOutDate(null);
-      setAdults(0);
-      setChildren(0);
+      setEventDate(null);
+      setGuests(10);
       setOccasion("");
       setDjRequired("no");
       setDrinkingAllowed("no");
     }, 5000);
   };
 
-  // Calculate price if dates are selected
+  // Calculate price based on booking type and selections
   const calculatePrice = () => {
-    if (!checkInDate || !checkOutDate) return null;
+    if (isWithStay && (!checkInDate || !checkOutDate)) return null;
+    if (!isWithStay && !eventDate) return null;
 
-    const nights = Math.ceil(
-      (checkOutDate - checkInDate) / (1000 * 60 * 60 * 24)
-    );
-    const basePrice = 16000 * nights;
+    const baseNightlyRate = isWithStay ? 16000 : 14000;
+    const nights = isWithStay && checkInDate && checkOutDate
+      ? Math.ceil((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24))
+      : 1;
+    
+    const basePrice = baseNightlyRate * (isWithStay ? nights : 1);
     let additionalCosts = 0;
 
     // Add DJ cost if required
@@ -125,8 +142,9 @@ const FarmhouseBooking = () => {
     const total = basePrice + additionalCosts;
 
     return {
-      nights,
+      nights: isWithStay ? nights : null,
       basePrice,
+      baseNightlyRate,
       djCost: djRequired === "yes" ? 6000 : 0,
       drinkingCost: drinkingAllowed === "yes" ? 6000 : 0,
       total,
@@ -140,21 +158,42 @@ const FarmhouseBooking = () => {
     setCurrentSlide(index);
   };
 
-  // Helper functions for guest count
-  const incrementAdults = () => setAdults((prev) => prev + 1);
-  const decrementAdults = () => setAdults((prev) => (prev > 0 ? prev - 1 : 0));
-  const incrementChildren = () => setChildren((prev) => prev + 1);
-  const decrementChildren = () =>
-    setChildren((prev) => (prev > 0 ? prev - 1 : 0));
-
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="max-w-6xl mx-auto mt-8" style={{ marginTop: '120px' }}>
+      {/* Custom Toggle */}
+      {/* <div className="flex justify-start mb-4 w-full">
+        <div className="flex rounded-full overflow-hidden">
+          <button 
+            className={`py-3 px-6 font-medium transition-all text-white ${isWithStay ? 'bg-[#c5a97c]' : 'bg-[#c5a97c] bg-opacity-50 hover:bg-opacity-60'}`}
+            style={{ 
+              borderRadius: '50px',
+              width: '180px',
+              fontSize: '16px'
+            }}
+            onClick={() => setIsWithStay(true)}
+          >
+            WITH STAY
+          </button>
+          <button 
+            className={`py-3 px-6 font-medium transition-all text-white ${!isWithStay ? 'bg-[#c5a97c]' : 'bg-[#c5a97c] bg-opacity-50 hover:bg-opacity-60'}`}
+            style={{ 
+              borderRadius: '50px',
+              width: '200px',
+              fontSize: '16px' 
+            }}
+            onClick={() => setIsWithStay(false)}
+          >
+            WITHOUT STAY
+          </button>
+        </div>
+      </div> */}
+      
       {/* Main Content */}
-      <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col md:flex-row shadow-lg rounded-lg overflow-hidden bg-white">
         {/* Left Side - Carousel */}
-        <div className="w-full md:w-3/5 relative mt-14">
+        <div className="w-full md:w-3/5 relative">
           {/* Main Image */}
-          <div className="relative h-96 md:h-[600px] overflow-hidden">
+          <div className="relative overflow-hidden" style={{ height: '700px' }}>
             {farmhouseImages.map((img, index) => (
               <div
                 key={index}
@@ -173,26 +212,26 @@ const FarmhouseBooking = () => {
             {/* Navigation Arrows */}
             <button
               onClick={handlePrevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 rounded-full"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/40 hover:bg-white/60 p-2 rounded-full transition-all duration-200"
             >
-              <ChevronLeft size={24} className="text-white" />
+              <ChevronLeft size={20} className="text-gray-800" />
             </button>
 
             <button
               onClick={handleNextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 p-2 rounded-full"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/40 hover:bg-white/60 p-2 rounded-full transition-all duration-200"
             >
-              <ChevronRight size={24} className="text-white" />
+              <ChevronRight size={20} className="text-gray-800" />
             </button>
           </div>
 
           {/* Thumbnails */}
-          <div className="flex overflow-x-auto mt-2 space-x-2 p-2">
-            {farmhouseImages.map((img, index) => (
+          <div className="flex overflow-x-auto space-x-1 p-1 bg-gray-100">
+            {farmhouseImages.slice(0, 8).map((img, index) => (
               <div
                 key={index}
-                className={`flex-shrink-0 w-20 h-20 cursor-pointer ${
-                  currentSlide === index ? "ring-2 ring-green-500" : ""
+                className={`flex-shrink-0 w-16 h-16 cursor-pointer transform transition-all duration-200 ${
+                  currentSlide === index ? "ring-2 ring-[#c5a97c] scale-105" : ""
                 }`}
                 onClick={() => goToSlide(index)}
               >
@@ -207,14 +246,40 @@ const FarmhouseBooking = () => {
         </div>
 
         {/* Right Side - Booking Form */}
-        <div className="w-full md:w-2/5 bg-white p-6 md:p-8">
+        <div className="w-full md:w-2/5 bg-gray-50 p-6" style={{ height: '770px', overflowY: 'none' }}>
           {/* Content */}
+
+          <div className="flex justify-center mb-4">
+  <div className="inline-flex rounded-full bg-gray-100 p-0.5">
+    <button
+      className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-all ${
+        isWithStay
+          ? "bg-amber-400 bg-opacity-70 text-white"
+          : "text-amber-400"
+      }`}
+      onClick={() => setIsWithStay(true)}
+    >
+      WITH STAY
+    </button>
+    <button
+      className={`rounded-full px-4 py-1.5 text-sm font-semibold transition-all ${
+        !isWithStay
+          ? "bg-amber-400 bg-opacity-70 text-white"
+          : "text-amber-400"
+      }`}
+      onClick={() => setIsWithStay(false)}
+    >
+      WITHOUT STAY
+    </button>
+  </div>
+</div>
+
           {bookingMessage ? (
-            <div className="text-center py-8 bg-green-50 rounded-lg p-6 shadow-md">
-              <div className="text-black mb-4">
+            <div className="text-center py-6 bg-green-50 rounded-lg p-5 shadow-md">
+              <div className="text-green-600 mb-3">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-16 w-16 mx-auto"
+                  className="h-14 w-14 mx-auto"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -227,74 +292,104 @@ const FarmhouseBooking = () => {
                   />
                 </svg>
               </div>
-              <p className="text-xl font-semibold text-gray-800">
+              <p className="text-lg font-semibold text-gray-800">
                 {bookingMessage}
               </p>
             </div>
           ) : (
             <>
               {/* Pricing Table */}
-              <div className=" p-4 rounded-t-lg">
-                <h2 className="text-center text-xl font-bold text-black">
-                  With Stay Booking
+              <div className="bg-white p-3 rounded-lg shadow-sm mb-4">
+                <h2 className="text-center text-lg font-bold text-gray-800 mb-2">
+                  {isWithStay ? "With Stay Booking" : "Event Only (No Stay)"}
                 </h2>
-                <div className="mt-4 bg-white rounded-lg overflow-hidden">
+                <div className="mt-2 bg-white rounded-lg overflow-hidden border border-gray-200">
                   <div className="grid grid-cols-2 border-b">
-                    <div className="p-3 font-medium">
-                      Mon - Thus (Price / Night)
+                    <div className="p-2 font-medium text-gray-700 text-sm">
+                      {isWithStay ? "Mon - Thur (Per Night)" : "Mon - Thur (Day Event)"}
                     </div>
-                    <div className="p-3 text-right font-bold">₹ 16000 /-</div>
+                    <div className="p-2 text-right font-bold text-[#c5a97c]">
+                      ₹ {isWithStay ? "16,000" : "14,000"} /-
+                    </div>
                   </div>
                   <div className="grid grid-cols-2">
-                    <div className="p-3 font-medium">
-                      Fri - Sun (Price / Night)
+                    <div className="p-2 font-medium text-gray-700 text-sm">
+                      {isWithStay ? "Fri - Sun (Per Night)" : "Fri - Sun (Day Event)"}
                     </div>
-                    <div className="p-3 text-right font-bold">₹ 16000 /-</div>
+                    <div className="p-2 text-right font-bold text-[#c5a97c]">
+                      ₹ {isWithStay ? "16,000" : "14,000"} /-
+                    </div>
                   </div>
                 </div>
-                <p className="text-center mt-4 text-sm">
-                  Note: Check-In 10:00 AM and Check-out time will be 10:00 AM!
+                <p className="text-center mt-3 text-xs text-gray-600">
+                  {isWithStay
+                    ? "Check-In 10:00 AM and Check-out time will be 10:00 AM!"
+                    : "Event hours: 10:00 AM to 10:00 PM"}
                 </p>
-                <p className="text-center mt-2 text-sm">
-                  Address: 873G+J6M Sohail, Colony, Surangal, Moinabad,
-                  Telangana
+                <p className="text-center mt-1 text-xs text-gray-600">
+                  Address: 873G+J6M Sohail, Colony, Surangal, Moinabad, Telangana
                 </p>
               </div>
 
               {/* Booking Form */}
-              <form onSubmit={handleEnquireNow} className="mt-4">
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2 font-medium">
-                    From Date - To Date
-                  </label>
-                  <div className="flex space-x-4">
-                    <DatePicker
-                      selected={checkInDate}
-                      onChange={(date) => setCheckInDate(date)}
-                      selectsStart
-                      startDate={checkInDate}
-                      endDate={checkOutDate}
-                      minDate={new Date()}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholderText="From Date"
-                      required
-                    />
-                    <DatePicker
-                      selected={checkOutDate}
-                      onChange={(date) => setCheckOutDate(date)}
-                      selectsEnd
-                      startDate={checkInDate}
-                      endDate={checkOutDate}
-                      minDate={checkInDate || new Date()}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      placeholderText="To Date"
-                      required
-                    />
+              <form onSubmit={handleEnquireNow} className="space-y-4">
+                {/* Date selection for with-stay bookings */}
+                {isWithStay ? (
+                  <div>
+                    <label className="block text-gray-700 mb-1 font-medium text-sm">
+                      From Date - To Date
+                    </label>
+                    <div className="flex space-x-2">
+                      <div className="relative w-1/2" onChange={(date) => setCheckInDate(date)}>
+                        <DatePicker
+                          selected={checkInDate}
+                          onChange={(date) => setCheckInDate(date)}
+                          selectsStart
+                          startDate={checkInDate}
+                          endDate={checkOutDate}
+                          minDate={new Date()}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#c5a97c]"
+                          placeholderText="From Date"
+                          required={isWithStay}
+                        />
+                        <Calendar size={22} className="absolute right-8 top-2 text-gray-400" />
+                      </div>
+                      <div className="relative w-1/2">
+                        <DatePicker
+                          selected={checkOutDate}
+                          onChange={(date) => setCheckOutDate(date)}
+                          selectsEnd
+                          startDate={checkInDate}
+                          endDate={checkOutDate}
+                          minDate={checkInDate || new Date()}
+                          className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#c5a97c]"
+                          placeholderText="To Date"
+                          required={isWithStay}
+                        />
+                    <Calendar size={22} className="absolute right-8 top-2 text-gray-400" />                      </div>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div>
+                    <label className="block text-gray-700 mb-1 font-medium text-sm">
+                      Event Date
+                    </label>
+                    <div className="relative">
+                      <DatePicker
+                        selected={eventDate}
+                        onChange={(date) => setEventDate(date)}
+                        minDate={new Date()}
+                        className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#c5a97c]"
+                        placeholderText="Select event date"
+                        required={!isWithStay}
+                      />
+                      <Calendar size={16} className="absolute right-3 top-3 text-gray-400" />
+                    </div>
+                  </div>
+                )}
 
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2 font-medium">
+                <div>
+                  <label className="block text-gray-700 mb-1 font-medium text-sm">
                     NUMBER OF GUESTS
                   </label>
                   <div className="flex border border-gray-300 rounded-md overflow-hidden">
@@ -303,11 +398,11 @@ const FarmhouseBooking = () => {
                       onClick={() =>
                         setGuests((prev) => (prev > 10 ? prev - 1 : 10))
                       }
-                      className="px-3 py-2 bg-gray-100 hover:bg-gray-200"
+                      className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
                     >
-                      <Minus size={16} />
+                      <Minus size={14} />
                     </button>
-                    <div className="flex-1 flex items-center justify-center font-medium">
+                    <div className="flex-1 flex items-center justify-center font-medium text-sm">
                       {guests}
                     </div>
                     <button
@@ -315,9 +410,9 @@ const FarmhouseBooking = () => {
                       onClick={() =>
                         setGuests((prev) => (prev < 500 ? prev + 1 : 500))
                       }
-                      className="px-3 py-2 bg-gray-100 hover:bg-gray-200"
+                      className="px-3 py-1 bg-gray-100 hover:bg-gray-200 transition-colors"
                     >
-                      <Plus size={16} />
+                      <Plus size={14} />
                     </button>
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
@@ -325,14 +420,14 @@ const FarmhouseBooking = () => {
                   </p>
                 </div>
 
-                <div className="mb-4">
-                  <label className="block text-gray-700 mb-2 font-medium">
+                <div>
+                  <label className="block text-gray-700 mb-1 font-medium text-sm">
                     Occasion
                   </label>
                   <select
                     value={occasion}
                     onChange={(e) => setOccasion(e.target.value)}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#c5a97c]"
                     required
                   >
                     <option value="">Select an occasion</option>
@@ -344,12 +439,12 @@ const FarmhouseBooking = () => {
                   </select>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-gray-700 mb-2 font-medium">
+                    <label className="block text-gray-700 mb-1 font-medium text-sm">
                       DJ Required?
                     </label>
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 text-sm">
                       <label className="flex items-center">
                         <input
                           type="radio"
@@ -357,7 +452,7 @@ const FarmhouseBooking = () => {
                           value="yes"
                           checked={djRequired === "yes"}
                           onChange={() => setDjRequired("yes")}
-                          className="mr-2"
+                          className="mr-1"
                         />
                         Yes (+₹6000)
                       </label>
@@ -368,17 +463,17 @@ const FarmhouseBooking = () => {
                           value="no"
                           checked={djRequired === "no"}
                           onChange={() => setDjRequired("no")}
-                          className="mr-2"
+                          className="mr-1"
                         />
                         No
                       </label>
                     </div>
                   </div>
                   <div>
-                    <label className="block text-gray-700 mb-2 font-medium">
+                    <label className="block text-gray-700 mb-1 font-medium text-sm">
                       Drinking Allowed?
                     </label>
-                    <div className="flex space-x-4">
+                    <div className="flex space-x-4 text-sm">
                       <label className="flex items-center">
                         <input
                           type="radio"
@@ -386,7 +481,7 @@ const FarmhouseBooking = () => {
                           value="yes"
                           checked={drinkingAllowed === "yes"}
                           onChange={() => setDrinkingAllowed("yes")}
-                          className="mr-2"
+                          className="mr-1"
                         />
                         Yes (+₹6000)
                       </label>
@@ -397,7 +492,7 @@ const FarmhouseBooking = () => {
                           value="no"
                           checked={drinkingAllowed === "no"}
                           onChange={() => setDrinkingAllowed("no")}
-                          className="mr-2"
+                          className="mr-1"
                         />
                         No
                       </label>
@@ -407,34 +502,40 @@ const FarmhouseBooking = () => {
 
                 {/* Price Summary */}
                 {priceDetails && (
-                  <div className="mb-6 p-4 bg-gray-50 rounded-md">
-                    <h4 className="font-semibold mb-2">Price Summary</h4>
-                    <div className="flex justify-between py-1 text-gray-700">
-                      <span>Base Price ({priceDetails.nights} nights)</span>
-                      <span>₹{priceDetails.basePrice}</span>
-                    </div>
-                    {priceDetails.djCost > 0 && (
+                  <div className="p-3 bg-white rounded-md shadow-sm border border-gray-100">
+                    <h4 className="font-semibold mb-2 text-sm">Price Summary</h4>
+                    <div className="space-y-1 text-sm">
                       <div className="flex justify-between py-1 text-gray-700">
-                        <span>DJ Service</span>
-                        <span>₹{priceDetails.djCost}</span>
+                        <span>
+                          {isWithStay
+                            ? `Base Price (${priceDetails.nights} night${priceDetails.nights > 1 ? "s" : ""})`
+                            : "Base Event Price"}
+                        </span>
+                        <span>₹{priceDetails.basePrice.toLocaleString()}</span>
                       </div>
-                    )}
-                    {priceDetails.drinkingCost > 0 && (
-                      <div className="flex justify-between py-1 text-gray-700">
-                        <span>Drinking Permission</span>
-                        <span>₹{priceDetails.drinkingCost}</span>
+                      {priceDetails.djCost > 0 && (
+                        <div className="flex justify-between py-1 text-gray-700">
+                          <span>DJ Service</span>
+                          <span>₹{priceDetails.djCost.toLocaleString()}</span>
+                        </div>
+                      )}
+                      {priceDetails.drinkingCost > 0 && (
+                        <div className="flex justify-between py-1 text-gray-700">
+                          <span>Drinking Permission</span>
+                          <span>₹{priceDetails.drinkingCost.toLocaleString()}</span>
+                        </div>
+                      )}
+                      <div className="flex justify-between py-1 font-semibold border-t border-gray-200 mt-1 pt-1 text-[#c5a97c]">
+                        <span>Total</span>
+                        <span>₹{priceDetails.total.toLocaleString()}</span>
                       </div>
-                    )}
-                    <div className="flex justify-between py-1 font-semibold border-t border-gray-200 mt-2 pt-2">
-                      <span>Total</span>
-                      <span>₹{priceDetails.total}</span>
                     </div>
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md transition-all font-medium text-lg"
+                  className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-md transition-all font-medium text-base shadow-sm"
                 >
                   Enquire Now
                 </button>
