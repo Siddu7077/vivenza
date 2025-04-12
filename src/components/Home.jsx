@@ -18,6 +18,7 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
+import FarmhouseBooking from "./MainSection";
 
 export default function FarmhouseRental() {
   const [checkInDate, setCheckInDate] = useState("");
@@ -65,117 +66,6 @@ export default function FarmhouseRental() {
     "https://assets.architecturaldigest.in/photos/6443d5e65e459f60aa95090f/master/w_1600,c_limit/IMG_8336-Edit.jpg",
   ];
 
-  const Gallery = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(0);
-
-    const openModal = (index) => {
-      setSelectedIndex(index);
-      setIsOpen(true);
-    };
-
-    const closeModal = () => setIsOpen(false);
-
-    const goPrev = () => {
-      setSelectedIndex((prev) =>
-        prev === 0 ? galleryImages.length - 1 : prev - 1
-      );
-    };
-
-    const goNext = () => {
-      setSelectedIndex((prev) =>
-        prev === galleryImages.length - 1 ? 0 : prev + 1
-      );
-    };
-
-    return (
-      <section id="gallery" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Photo Gallery</h2>
-            <div className="w-24 h-1 bg-green-700 mx-auto mb-6"></div>
-            <p className="text-gray-700 max-w-2xl mx-auto">
-              Take a visual tour of our beautiful farmhouse and its
-              surroundings.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((url, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-lg shadow-md cursor-pointer"
-                onClick={() => openModal(index)}
-              >
-                <img
-                  src={url}
-                  alt={`Farmhouse view ${index + 1}`}
-                  className="w-full h-64 object-cover transition-transform duration-300 hover:scale-110"
-                />
-              </div>
-            ))}
-          </div>
-
-          {isOpen && (
-            <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col items-center justify-center p-4">
-              <button
-                onClick={closeModal}
-                className="absolute top-6 right-6 text-white hover:text-gray-300"
-              >
-                <X size={36} />
-              </button>
-
-              <div className="relative w-full max-w-4xl mb-4">
-                <img
-                  src={galleryImages[selectedIndex]}
-                  alt={`Selected ${selectedIndex + 1}`}
-                  className="w-full h-[500px] object-cover rounded-xl shadow-lg"
-                />
-                <button
-                  onClick={goPrev}
-                  className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 text-white"
-                >
-                  <ChevronLeft size={32} />
-                </button>
-                <button
-                  onClick={goNext}
-                  className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black bg-opacity-50 p-3 text-white"
-                >
-                  <ChevronRight size={32} />
-                </button>
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 text-white text-lg bg-black bg-opacity-60 px-4 py-1 rounded-full">
-                  {selectedIndex + 1} / {galleryImages.length}
-                </div>
-              </div>
-
-              <div className="flex overflow-x-auto space-x-2 max-w-full pb-2">
-                {galleryImages.map((url, index) => (
-                  <img
-                    key={index}
-                    src={url}
-                    alt={`Thumb ${index + 1}`}
-                    className={`h-20 w-32 object-cover rounded cursor-pointer border-2 ${
-                      selectedIndex === index
-                        ? "border-green-500"
-                        : "border-transparent"
-                    }`}
-                    onClick={() => setSelectedIndex(index)}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </section>
-    );
-  };
-
-  //   const placeholderImages = [
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800",
-  //     "/api/placeholder/1200/800"
-  //   ];
 
   const amenities = [
     { icon: <Coffee size={24} />, name: "Coffee Maker" },
@@ -322,7 +212,7 @@ export default function FarmhouseRental() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative h-screen">
+      {/* <section id="home" className="relative h-screen">
         <div className="absolute inset-0 bg-black/30 z-10 flex items-center justify-center text-center">
           <div className="text-white max-w-3xl px-4">
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
@@ -371,6 +261,144 @@ export default function FarmhouseRental() {
           <ChevronRight size={24} className="text-white" />
         </button>
       </section>
+
+    Booking Modal 
+      {isBookingOpen && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-lg w-full max-w-lg max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold">Book Your Stay</h3>
+                <button
+                  onClick={() => setIsBookingOpen(false)}
+                  className="text-gray-500 hover:text-gray-800"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {bookingMessage ? (
+                <div className="text-center py-8">
+                  <div className="text-green-700 mb-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-16 w-16 mx-auto"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-xl font-semibold text-gray-800">
+                    {bookingMessage}
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleBookNow}>
+                  <div className="mb-6">
+                    <label
+                      htmlFor="checkIn"
+                      className="block text-gray-700 mb-2 font-medium"
+                    >
+                      Check-in Date
+                    </label>
+                    <input
+                      type="date"
+                      id="checkIn"
+                      value={checkInDate}
+                      onChange={(e) => setCheckInDate(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-6">
+                    <label
+                      htmlFor="checkOut"
+                      className="block text-gray-700 mb-2 font-medium"
+                    >
+                      Check-out Date
+                    </label>
+                    <input
+                      type="date"
+                      id="checkOut"
+                      value={checkOutDate}
+                      onChange={(e) => setCheckOutDate(e.target.value)}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-8">
+                    <label
+                      htmlFor="guests"
+                      className="block text-gray-700 mb-2 font-medium"
+                    >
+                      Number of Guests
+                    </label>
+                    <select
+                      id="guests"
+                      value={guests}
+                      onChange={(e) => setGuests(Number(e.target.value))}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                    >
+                      {[...Array(8)].map((_, i) => (
+                        <option key={i} value={i + 1}>
+                          {i + 1} Guest{i !== 0 ? "s" : ""}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="mb-6 p-4 bg-gray-50 rounded-md">
+                    <h4 className="font-semibold mb-2">Price Summary</h4>
+                    <div className="flex justify-between py-1 text-gray-700">
+                      <span>Base Price</span>
+                      <span>$250/night</span>
+                    </div>
+                    <div className="flex justify-between py-1 text-gray-700">
+                      <span>Cleaning Fee</span>
+                      <span>$150</span>
+                    </div>
+                    <div className="flex justify-between py-1 font-semibold border-t border-gray-200 mt-2 pt-2">
+                      <span>Total</span>
+                      <span>Calculated at checkout</span>
+                    </div>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-md transition-all flex items-center justify-center"
+                  >
+                    <Calendar size={20} className="mr-2" />
+                    Book Now
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )} */}
+<FarmhouseBooking />
 
       {/* About Section */}
       <section id="about" className="py-16 bg-white">
@@ -1337,142 +1365,7 @@ export default function FarmhouseRental() {
         </div>
       </footer>
 
-      {/* Booking Modal */}
-      {isBookingOpen && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg w-full max-w-lg max-h-[90vh] overflow-y-auto">
-            <div className="p-6">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-bold">Book Your Stay</h3>
-                <button
-                  onClick={() => setIsBookingOpen(false)}
-                  className="text-gray-500 hover:text-gray-800"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </button>
-              </div>
-
-              {bookingMessage ? (
-                <div className="text-center py-8">
-                  <div className="text-green-700 mb-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-16 w-16 mx-auto"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-xl font-semibold text-gray-800">
-                    {bookingMessage}
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleBookNow}>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="checkIn"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Check-in Date
-                    </label>
-                    <input
-                      type="date"
-                      id="checkIn"
-                      value={checkInDate}
-                      onChange={(e) => setCheckInDate(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-6">
-                    <label
-                      htmlFor="checkOut"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Check-out Date
-                    </label>
-                    <input
-                      type="date"
-                      id="checkOut"
-                      value={checkOutDate}
-                      onChange={(e) => setCheckOutDate(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-8">
-                    <label
-                      htmlFor="guests"
-                      className="block text-gray-700 mb-2 font-medium"
-                    >
-                      Number of Guests
-                    </label>
-                    <select
-                      id="guests"
-                      value={guests}
-                      onChange={(e) => setGuests(Number(e.target.value))}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-                    >
-                      {[...Array(8)].map((_, i) => (
-                        <option key={i} value={i + 1}>
-                          {i + 1} Guest{i !== 0 ? "s" : ""}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="mb-6 p-4 bg-gray-50 rounded-md">
-                    <h4 className="font-semibold mb-2">Price Summary</h4>
-                    <div className="flex justify-between py-1 text-gray-700">
-                      <span>Base Price</span>
-                      <span>$250/night</span>
-                    </div>
-                    <div className="flex justify-between py-1 text-gray-700">
-                      <span>Cleaning Fee</span>
-                      <span>$150</span>
-                    </div>
-                    <div className="flex justify-between py-1 font-semibold border-t border-gray-200 mt-2 pt-2">
-                      <span>Total</span>
-                      <span>Calculated at checkout</span>
-                    </div>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="w-full bg-green-700 hover:bg-green-800 text-white py-3 rounded-md transition-all flex items-center justify-center"
-                  >
-                    <Calendar size={20} className="mr-2" />
-                    Book Now
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
+      
     </div>
   );
 }
