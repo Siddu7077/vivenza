@@ -415,7 +415,7 @@ export default function FarmhouseRental() {
               <img
                 src="https://www.indiaartndesign.com/IAnD_images/content2021/March2021/ClusterOne/sit-out-SanvinaFarmhouse-ClusterOneCreativeSolutions-indiaartndesign.jpg"
                 alt="Farmhouse exterior"
-                className="rounded-lg shadow-lg w-full h-auto"
+                className="rounded-lg shadow-lg w-auto h-full"
               />
             </div>
 
@@ -423,6 +423,20 @@ export default function FarmhouseRental() {
               <h3 className="text-2xl font-semibold mb-4">
                 A Perfect Country Escape
               </h3>
+              <p className="text-gray-700 mb-4">
+                Nestled in the picturesque countryside, our charming farmhouse
+                offers the perfect blend of rustic charm and modern comfort.
+                Built in the 1900s and lovingly restored, this historic property
+                sits on 5 acres of private land with stunning views of rolling
+                hills and lush forests.
+              </p>
+              <p className="text-gray-700 mb-4">
+                Nestled in the picturesque countryside, our charming farmhouse
+                offers the perfect blend of rustic charm and modern comfort.
+                Built in the 1900s and lovingly restored, this historic property
+                sits on 5 acres of private land with stunning views of rolling
+                hills and lush forests.
+              </p>
               <p className="text-gray-700 mb-4">
                 Nestled in the picturesque countryside, our charming farmhouse
                 offers the perfect blend of rustic charm and modern comfort.
