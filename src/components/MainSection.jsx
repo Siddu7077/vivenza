@@ -41,7 +41,7 @@ const FarmhouseBooking = () => {
     { src: img1, caption: "Welcome to our luxurious farmhouse retreat" },
     { src: img2, caption: "Spacious interior with modern amenities" },
     { src: img3, caption: "Relax by the pristine swimming pool" },
-    { src: img4, caption: "Perfect for outdoor celebrations" },
+    // { src: img4, caption: "Perfect for outdoor celebrations" },
     { src: img5, caption: "Elegant dining area for your events" },
     { src: img6, caption: "Lush green surroundings for a peaceful getaway" },
     { src: img7, caption: "Beautiful garden space for gatherings" },
