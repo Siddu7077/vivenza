@@ -535,7 +535,7 @@ const FarmhouseBooking = () => {
       {/* Thumbnails at the bottom */}
       <div className="absolute bottom-0 left-0 w-full bg-black bg-opacity-60 py-2">
         <div className="flex justify-center overflow-x-auto space-x-2 px-4">
-          {farmhouseImages.slice(0, 10).map((img, index) => (
+          {farmhouseImages.slice(0, 16).map((img, index) => (
             <div
               key={index}
               className={`flex-shrink-0 w-16 h-12 cursor-pointer transform transition-all duration-200 ${
