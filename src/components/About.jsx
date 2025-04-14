@@ -4,7 +4,7 @@ import five from '../assets/5.jpeg'
 
 const About = () => {
   return (
-    <div className="min-h-screen mt-24 bg-gray-50">
+    <div className="min-h-screen mt-15 bg-gray-50">
       {/* Hero Section */}
       <section className="relative h-96 bg-green-900">
         <div className="absolute inset-0 bg-black opacity-50"></div>

@@ -41,7 +41,7 @@ const FarmhouseBooking = () => {
   // Farmhouse images from assets folder
   const farmhouseImages = [
     img1, img2, img3, img4, img5, img6, img7, img8, img9,
-    img10, img11, img12, img13, img14, img15, img16, img17
+    img10, img11, img12, img13, img14, img15, img16, img17 
   ];
 
   // List of occasions
@@ -267,14 +267,14 @@ const FarmhouseBooking = () => {
             </div>
             
             <div className="space-y-1">
-              <label className="block text-xs font-medium">Adults:</label>
+              <label className="block text-xs font-medium">Guests:</label>
               <div className="relative">
                 <select 
                   value={adults}
                   onChange={(e) => setAdults(parseInt(e.target.value))}
                   className="w-32 px-3 py-2 text-sm bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-1 focus:ring-[#c5a97c] text-white appearance-none"
                 >
-                  {Array.from({ length: 300 }, (_, i) => i + 1).map(num => (
+                  {Array.from({ length: 491 }, (_, i) => i + 10).map(num => (
                     <option key={num} value={num}>{num}</option>
                   ))}
                 </select>
@@ -282,7 +282,7 @@ const FarmhouseBooking = () => {
               </div>
             </div>
             
-            <div className="space-y-1">
+            {/* <div className="space-y-1">
               <label className="block text-xs font-medium">Children:</label>
               <div className="relative">
                 <select 
@@ -296,13 +296,13 @@ const FarmhouseBooking = () => {
                 </select>
                 <ChevronDown size={16} className="absolute right-3 top-3 text-gray-400" />
               </div>
-            </div>
+            </div> */}
             
             <button 
               onClick={() => setShowBookingForm(true)}
               className="bg-[#c5a97c] hover:bg-[#b39868] text-white py-2 px-6 rounded-md transition-all font-medium text-base shadow-sm"
             >
-              Book Now
+              Check Avaliability
             </button>
           </div>
         </div>
@@ -310,7 +310,7 @@ const FarmhouseBooking = () => {
 
       {/* Thumbnails Bar */}
       <div className="flex overflow-x-auto space-x-1 p-2 bg-gray-100 w-full">
-        {farmhouseImages.slice(0, 8).map((img, index) => (
+        {farmhouseImages.slice(0, 17).map((img, index) => (
           <div
             key={index}
             className={`flex-shrink-0 w-20 h-16 cursor-pointer transform transition-all duration-200 ${
