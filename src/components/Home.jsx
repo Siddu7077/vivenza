@@ -18,6 +18,8 @@ import {
   Facebook,
   Twitter,
 } from "lucide-react";
+import { ChevronDown } from 'lucide-react';
+
 import FarmhouseBooking from "./MainSection";
 import FarmhouseAmenities from "./Amenites"
 import img1 from "../assets/1.jpeg";

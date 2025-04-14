@@ -9,10 +9,10 @@ const FarmhouseAmenities = () => {
   const [activeTab, setActiveTab] = useState('all');
   
   const propertyDetails = [
-    { label: "Rooms", value: "11", icon: <Home size={24} /> },
+    { label: "Rooms", value: "4", icon: <Home size={24} /> },
     { label: "Capacity", value: "500", icon: <Users size={24} /> },
     { label: "Area", value: "9250 Ft²", icon: <BookText size={24} /> },
-    { label: "Bathrooms", value: "9", icon: <Bath size={24} /> }
+    { label: "Bathrooms", value: "4", icon: <Bath size={24} /> }
   ];
 
   const amenitiesCategories = {
