@@ -230,7 +230,7 @@ const FarmhouseBooking = () => {
         className={`fixed top-24 right-6 z-20 shadow-2xl transition-all duration-500 transform ${
           isFormVisible ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ width: '400px', maxHeight: '70vh', overflow: 'auto' }}
+        style={{ width: '500px', maxHeight: '90vh', overflow: 'auto' }}
       >
         <div className="bg-white bg-opacity-90 backdrop-blur-sm rounded-lg shadow-xl p-5">
           {/* Form Content */}
