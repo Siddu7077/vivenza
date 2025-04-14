@@ -38,23 +38,23 @@ const FarmhouseBooking = () => {
 
   // Farmhouse images with captions
   const farmhouseImages = [
-    { src: img1, caption: "Welcome to our luxurious farmhouse retreat" },
-    { src: img2, caption: "Spacious interior with modern amenities" },
-    { src: img3, caption: "Relax by the pristine swimming pool" },
+    { src: img1 },
+    { src: img2},
+    { src: img3},
     // { src: img4, caption: "Perfect for outdoor celebrations" },
-    { src: img5, caption: "Elegant dining area for your events" },
-    { src: img6, caption: "Lush green surroundings for a peaceful getaway" },
-    { src: img7, caption: "Beautiful garden space for gatherings" },
-    { src: img8, caption: "Cozy bedroom for a comfortable stay" },
-    { src: img9, caption: "Modern bathroom facilities" },
-    { src: img10, caption: "Stunning night view of the property" },
-    { src: img11, caption: "Entertainment area for your enjoyment" },
-    { src: img12, caption: "Fully equipped kitchen for your convenience" },
-    { src: img13, caption: "Serene outdoor seating areas" },
-    { src: img14, caption: "Stylish living room for relaxation" },
-    { src: img15, caption: "Breathtaking views from every angle" },
-    { src: img16, caption: "Perfect sunset views to end your day" },
-    { src: img17, caption: "Aerial view of our expansive property" }
+    { src: img5},
+    { src: img6 },
+    { src: img7 },
+    { src: img8 },
+    { src: img9},
+    { src: img10 },
+    { src: img11},
+    { src: img12},
+    { src: img13 },
+    { src: img14},
+    { src: img15},
+    { src: img16},
+    { src: img17}
   ];
 
   // List of occasions
@@ -227,7 +227,7 @@ const FarmhouseBooking = () => {
       {/* Overlapping Booking Form */}
       <div className="sticky top-24 z-10">
       <div 
-        className={`fixed top-24 right-6 z-20 transition-all duration-500 transform ${
+        className={`fixed top-24 right-6 z-20 shadow-2xl transition-all duration-500 transform ${
           isFormVisible ? "translate-x-0" : "translate-x-full"
         }`}
         style={{ width: '400px', maxHeight: '70vh', overflow: 'auto' }}
